@@ -15,7 +15,10 @@
 %include 'funciones.asm' 
 
 section .data
-    msg db "Numero mayor: ",0x0
+    msg db "mayor a 50",0x0
+    msg2 db "mayor a 25", 0x0
+    msg3 db "mayor a 10", 0x0
+    msg4 db "menor a 10", 0x0
 
 section .text
     global _start
@@ -36,21 +39,39 @@ sigArg:
     cmp EDX,EAX                         ;comparamos lo que esta en EAX con nuestro numero mayor
     jle mayora50	                    ;si es mayor, sobreescribimos el registro
     mov EDX, 25000
+    cmp EDX, EAX
     jle mayora25
     mov EDX, 10000
+    cmp EDX, EAX
     jle mayora10
     jg menora10    
     dec ECX                             ;le restamos 1 a ECX
     jmp sigArg                          ;saltamos a sigArg para obtener otro argumento
     
 noMasArgs:
-    mov EAX, msg                        ;preparamos para imprimir mensaje
-    call sprint                         ;imprimimos
+    ;mov EAX, msg                        ;preparamos para imprimir mensaje
+    ;call sprint                         ;imprimimos
     mov EAX,EDX                         ;movemos nuestro numero mayor para imprimirlo
     call iprintLF                       ;imprimimos el resultado con linefeed
     call quit                           ;salida
 
-sobreEscribir:
-    mov EDX, EAX                        ;cuando es mayor mandamos el argumento ya convertido a nuestro registro
-    dec ECX                             ;restamos 1 a ecx para pasar al siguiente argumento
-    jmp sigArg                          ;saltamos a sigArg para obtener otro argumento
+mayora50:
+	mov eax,msg
+	call sprintLF
+	dec ecx
+	jmp sigArg
+mayora25:
+	mov eax, msg2
+	call sprintLF
+	dec ecx
+	jmp sigArg
+mayora10:
+	mov eax, msg3
+	call sprintLF
+	dec ecx
+	jmp sigArg
+menora10:
+	mov eax, msg4
+	call sprintLF
+	dec ecx
+	jmp sigArg
