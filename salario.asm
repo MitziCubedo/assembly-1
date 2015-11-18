@@ -15,6 +15,8 @@
 %include 'funciones.asm' 
 
 section .data
+	msgsalario db "Salario: ", 0x0
+	msgimpuesto db "Impuesto: ", 0x0
     msg db "mayor a 50",0x0
     msg2 db "mayor a 25", 0x0
     msg3 db "mayor a 10", 0x0
@@ -56,20 +58,36 @@ noMasArgs:
     call quit                           ;salida
 
 mayora50:
-	mov eax,msg
-	call sprintLF
+	push eax
+	mov eax,msgsalario
+	call sprint
+	pop eax
+	call iprintLF
+	push eax
+	mov eax, msgimpuesto
+	call sprint
+	pop eax
+	mov edx, 30
+	mul edx
+	mov ebx, 100
+	div ebx
+
+	call iprintLF
 	dec ecx
 	jmp sigArg
+
 mayora25:
 	mov eax, msg2
 	call sprintLF
 	dec ecx
 	jmp sigArg
+
 mayora10:
 	mov eax, msg3
 	call sprintLF
 	dec ecx
 	jmp sigArg
+
 menora10:
 	mov eax, msg4
 	call sprintLF
