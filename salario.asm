@@ -53,8 +53,8 @@ sigArg:
 noMasArgs:
     ;mov EAX, msg                        ;preparamos para imprimir mensaje
     ;call sprint                         ;imprimimos
-    mov EAX,EDX                         ;movemos nuestro numero mayor para imprimirlo
-    call iprintLF                       ;imprimimos el resultado con linefeed
+    ;mov EAX,EDX                         ;movemos nuestro numero mayor para imprimirlo
+    ;call iprintLF                       ;imprimimos el resultado con linefeed
     call quit                           ;salida
 
 mayora50:
