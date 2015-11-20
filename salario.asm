@@ -132,7 +132,7 @@ mayora10:
     mov eax, msgimpuesto               ;movemos el mensaje a imprimir
     call sprint                        ;imprime
     pop eax                            ;sacamos del stack a eax el sueldo
-    mov edx, 25                        ;movemos el 30 para sacar el porcentaje
+    mov edx, 20                        ;movemos el 30 para sacar el porcentaje
     mul edx                            ;multiplicamos
     mov ebx, 100                       ;movemos el 100 para dividir
     div ebx                            ;dividimos
