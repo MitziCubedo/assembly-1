@@ -1,0 +1,3 @@
+eax = extended acumulator 32 bits
+ax = 16 bits
+al o ah = 8 bits
