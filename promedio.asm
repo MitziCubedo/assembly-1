@@ -29,18 +29,18 @@ _start:
     dec ecx ;restamos 1
     pop eax ;# califs
 
-    call atoi               ;convertimos el caracter a numero
-    cmp EAX, 0              ;comparamos EAX con cero 
-    jz quit                 ;si no hay calificaciones, salimos
-    mov EBX, EAX            ;movemos EAX a EDX
-    mov EAX, msjNombre      ;preparamos para imprimir 
-    call sprint             ;imprimimos msjNombre
-    mov ECX, Buffer         ;direccion de Buffer a ECX
-    mov EDX, BufferLen      ;longitud de Buffer a EDX 
-    call LeerTexto          ;llamamos a la funcion LeerTexto
-    push EAX                ;guardamos el nombre del alumno en el stack
-    mov ECX, 1              ;movemos uno a ECX (num para las calificaciones)
-    mov EDX, 0              ;iniciamos EDX en cero
+    call atoi                   ;convertimos el caracter a numero
+    cmp EAX, 0                  ;comparamos EAX con cero 
+    jz quit                     ;si no hay calificaciones, salimos
+    mov EBX, EAX                ;movemos EAX a EDX
+    mov EAX, msjNombre          ;preparamos para imprimir 
+    call sprint                 ;imprimimos msjNombre
+    mov ECX, Buffer             ;direccion de Buffer a ECX
+    mov EDX, BufferLen          ;longitud de Buffer a EDX 
+    call LeerTexto              ;llamamos a la funcion LeerTexto
+    push EAX                    ;guardamos el nombre del alumno en el stack
+    mov ECX, 1                  ;movemos uno a ECX (num para las calificaciones)
+    mov EDX, 0                  ;iniciamos EDX en cero
 
 sigCalif:
     cmp ECX, EBX                        ;comparamos ECX con EDX
