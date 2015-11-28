@@ -1,0 +1,7 @@
+instrucciones:
+
+nasm -f elf fileName.asm
+
+ld -m elf_i386 -s -o fileName fileName.o
+
+./fileName

@@ -13,11 +13,17 @@ print("*************************************************************************
 print("Version 0.1 por Cristian Samaniego")
 print("")
 
-archivo = raw_input("Especifique el nombre del archivo (sin la extension .asm): ")
+archivo = raw_input("Especifique el nombre del archivo (sin la extension .asm): \n")
+liga = raw_input("Seleccione el linker: \n 1)gcc \n 2)ld \n")
 
 try:
     os.system("nasm -f elf "+archivo+".asm")
-    os.system("ld -o "+archivo+" "+archivo+".o -melf_i386")
+    if liga == 1:
+    	os.system("gcc "+archivo+".o -o "+archivo)
+    	pass
+    elif liga == 2:
+    	os.system("ld -o "+archivo+" "+archivo+".o -melf_i386")
+    
     pass
 except OSError, e:
     print("Error inesperado: "+e)
