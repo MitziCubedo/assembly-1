@@ -2,6 +2,9 @@
 ;autores: Cristian Samaniego, Mitzi Sanchez
 ;fecha: 28/11/15
 
+    sys_read    equ 3
+    stdin       equ 0
+    
 section .data
     msjNombre db "Nombre del Alumno: ", 0x0     ;declaramos msjNombre
     msjCalificacion db  "Calificacion ",0x0     ;declaramos msjCalificacion
@@ -11,9 +14,6 @@ section .data
     msjReprobado db "Reprobado", 0x0            ;declaramos msjReprobado
     msjDosPuntos db ": ", 0x0                    ;declaramos msjDosPuntos
     msjSeparador db "-------------------------" ;declaramos msjSeparador
-    
-    sys_read    equ 3
-    stdin       equ 0
 
 section .bss
     Buffer resb 20                 ;reserva 20bytes
@@ -93,6 +93,20 @@ impReprobado:
 strlen:             ;funcion strlen
     push EBX        ;salvamos el valor de EBX en la pila/stack
     mov EBX, EAX    ;copiamos la direccion del mensaje a EBX
+
+sigcar: 
+    cmp byte [EAX], 0 ;comparamos el byte que esta en la direccion 
+                      ;a la que apunta EAX con 0 (estamos buscando el   
+                      ;caracter de terminacion 0
+    jz finalizar      ;jump if zero, salta a finalizar si es cero
+    inc EAX           ;incrementamos en 1 el acumulador
+    jmp sigcar        ;salto incondicional al siguiente caracter
+
+finalizar:
+    sub EAX, EBX        ;restamos al valor inicial de memoria 
+                        ;el valor de final de memoria
+    pop EBX             ;restablecer EBX
+    ret                 ;regresar al punto en que llamaron la funcion
 
 atoi:
     push EBX        ;preservamos EBX
