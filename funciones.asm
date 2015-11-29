@@ -1,5 +1,6 @@
 ;funciones.asm
-;nombre: Cristian Samaniego
+;autor: Mitzi Sanchez
+;colaborador: Cristian Samaniego
 ;Modificacion: 3 nov 2015
 ;aqui van nuestras funciones
 
